@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    const { ipcRenderer } = require('electron');
+    var updateOnlineStatus = function() {
+        ipcRenderer.sendSync('online-status-changed', navigator.onLine ? 'online' : 'offline');
+        console.log('navigator.onLine ===>>',navigator.onLine )
+    };
+
+    window.addEventListener('online',  updateOnlineStatus);
+    window.addEventListener('offline',  updateOnlineStatus);
+
+    updateOnlineStatus();
+</script>
+</body>
+</html>
